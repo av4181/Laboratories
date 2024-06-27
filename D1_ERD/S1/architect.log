@@ -1,0 +1,707 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+422  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+484  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+484  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+517  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22047 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+536  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+605  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+606  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+645  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22274 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+86666 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property autoIncrementSequenceName changed while monitoring pkTable
+118798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Laboratory (
+                Laboratory_ID VARCHAR2(10) NOT NULL,
+                Laboratory_Name VARCHAR2 NOT NULL,
+                Company VARCHAR2 NOT NULL,
+                Laboratory_Adress VARCHAR2 NOT NULL,
+                Laboratory_Description VARCHAR2 NOT NULL,
+                Laboratory_Location VARCHAR2 NOT NULL,
+                CONSTRAINT LABORATORY_PK PRIMARY KEY (Laboratory_ID)
+)
+118798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE INSTRUMENT_INSTRUMENT_ID_SEQ
+118799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Instrument (
+                Instrument_ID NUMBER NOT NULL,
+                Instrument_Description VARCHAR2 NOT NULL,
+                Instrument_Name VARCHAR2 NOT NULL,
+                Instrument_Cost NUMBER NOT NULL,
+                CONSTRAINT INSTRUMENT_ID PRIMARY KEY (Instrument_ID)
+)
+118799 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE SAMPLE_SAMPLE_ID_SEQ_1
+118800 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Sample (
+                Sample_ID NUMBER NOT NULL,
+                Sample_Description VARCHAR2 NOT NULL,
+                Sample_Status VARCHAR2 NOT NULL,
+                Sampling_Date DATE NOT NULL,
+                Samplepoint VARCHAR2 NOT NULL,
+                Sample_Type VARCHAR2 NOT NULL,
+                Product VARCHAR2 NOT NULL,
+                CONSTRAINT SAMPLE_ID PRIMARY KEY (Sample_ID)
+)
+118800 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Sample IS 'Logischer om hier een one to many van te maken? Of hoe combineren we dat 1 staal aan meerdere labo''s toegewezen kan worden'
+118800 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE LAB_TECHNICIANS_TECHNICIAN_372
+118801 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Lab_Technicians (
+                Technician_ID NUMBER NOT NULL,
+                Laboratory_ID VARCHAR2(10) NOT NULL,
+                Supervisor_ID NUMBER,
+                First_Name VARCHAR2 NOT NULL,
+                Last_Name VARCHAR2 NOT NULL,
+                Gender CHAR NOT NULL,
+                Function VARCHAR2 DEFAULT Lab Technician NOT NULL,
+                Function_Start_Date DATE DEFAULT now() NOT NULL,
+                Function_End_Date DATE,
+                Adress VARCHAR2 NOT NULL,
+                CONSTRAINT TECHNICIAN_ID PRIMARY KEY (Technician_ID)
+)
+118801 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE MEASUREMENT_MEASUREMENT_ID_SEQ
+118802 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Measurement (
+                Measurement_ID NUMBER NOT NULL,
+                Laboratory_ID VARCHAR2(10) NOT NULL,
+                Sample_ID NUMBER NOT NULL,
+                Instrument_ID NUMBER NOT NULL,
+                Technician_ID NUMBER NOT NULL,
+                Measurement_Start_Date DATE,
+                Measurement_End_Date DATE,
+                Result NUMBER,
+                Unit VARCHAR2,
+                Measurement_Cost NUMBER DEFAULT 100,15 NOT NULL,
+                CONSTRAINT MEASUREMENT_ID PRIMARY KEY (Measurement_ID)
+)
+118803 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABORATORY_LAB_TECHNICIANS_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+118804 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABORATORY_MEASUREMENT_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+118804 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT TECHNIQUE_MEASUREMENT_FK
+FOREIGN KEY (Instrument_ID)
+REFERENCES Instrument (Instrument_ID)
+NOT DEFERRABLE
+118805 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT SAMPLE_MEASUREMENT_FK
+FOREIGN KEY (Sample_ID)
+REFERENCES Sample (Sample_ID)
+ON DELETE CASCADE
+NOT DEFERRABLE
+118806 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABTECHNICIANS_LABTECHNICIA461
+FOREIGN KEY (Supervisor_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+118806 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABTECHNICIANS_MEASUREMENT_FK
+FOREIGN KEY (Technician_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+118810 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :16
+180491 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+180493 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+180499 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+180504 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+451674 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Laboratory (
+                Laboratory_ID NUMBER NOT NULL,
+                Laboratory_Name VARCHAR2 NOT NULL,
+                Company VARCHAR2 NOT NULL,
+                Laboratory_Adress VARCHAR2 NOT NULL,
+                Laboratory_Description VARCHAR2 NOT NULL,
+                Laboratory_Location VARCHAR2 NOT NULL,
+                CONSTRAINT LABORATORY_PK PRIMARY KEY (Laboratory_ID)
+)
+451674 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE INSTRUMENT_INSTRUMENT_ID_SEQ
+451675 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Instrument (
+                Instrument_ID NUMBER NOT NULL,
+                Instrument_Description VARCHAR2 NOT NULL,
+                Instrument_Name VARCHAR2 NOT NULL,
+                Instrument_Cost NUMBER NOT NULL,
+                CONSTRAINT INSTRUMENT_ID PRIMARY KEY (Instrument_ID)
+)
+451675 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE SAMPLE_SAMPLE_ID_SEQ_1
+451675 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Sample (
+                Sample_ID NUMBER NOT NULL,
+                Sample_Description VARCHAR2 NOT NULL,
+                Sample_Status VARCHAR2 NOT NULL,
+                Sampling_Date TIMESTAMP NOT NULL,
+                Samplepoint VARCHAR2 NOT NULL,
+                Sample_Type VARCHAR2 NOT NULL,
+                Product VARCHAR2 NOT NULL,
+                CONSTRAINT SAMPLE_ID PRIMARY KEY (Sample_ID)
+)
+451675 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Sample IS 'Logischer om hier een one to many van te maken? Of hoe combineren we dat 1 staal aan meerdere labo''s toegewezen kan worden'
+451676 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE LAB_TECHNICIANS_TECHNICIAN_372
+451676 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Lab_Technicians (
+                Technician_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Supervisor_ID NUMBER,
+                First_Name VARCHAR2 NOT NULL,
+                Last_Name VARCHAR2 NOT NULL,
+                Gender CHAR NOT NULL,
+                Function VARCHAR2 DEFAULT Lab Technician NOT NULL,
+                Function_Start_Date DATE DEFAULT now() NOT NULL,
+                Function_End_Date DATE,
+                Adress VARCHAR2 NOT NULL,
+                CONSTRAINT TECHNICIAN_ID PRIMARY KEY (Technician_ID)
+)
+451676 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE MEASUREMENT_MEASUREMENT_ID_SEQ
+451676 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Measurement (
+                Measurement_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Sample_ID NUMBER NOT NULL,
+                Instrument_ID NUMBER NOT NULL,
+                Technician_ID NUMBER NOT NULL,
+                Measurement_Start_Date TIMESTAMP,
+                Measurement_End_Date TIMESTAMP,
+                Result NUMBER,
+                Unit VARCHAR2,
+                Measurement_Cost NUMBER(10,2) NOT NULL,
+                CONSTRAINT MEASUREMENT_ID PRIMARY KEY (Measurement_ID)
+)
+451677 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABORATORY_LAB_TECHNICIANS_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+451677 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABORATORY_MEASUREMENT_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+451677 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT TECHNIQUE_MEASUREMENT_FK
+FOREIGN KEY (Instrument_ID)
+REFERENCES Instrument (Instrument_ID)
+NOT DEFERRABLE
+451677 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT SAMPLE_MEASUREMENT_FK
+FOREIGN KEY (Sample_ID)
+REFERENCES Sample (Sample_ID)
+ON DELETE CASCADE
+NOT DEFERRABLE
+451678 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABTECHNICIANS_LABTECHNICIA461
+FOREIGN KEY (Supervisor_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+451678 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABTECHNICIANS_MEASUREMENT_FK
+FOREIGN KEY (Technician_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+451678 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :16
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+467  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+541  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+541  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+581  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+476  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+566  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+566  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+609  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22252 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+28828 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Laboratory (
+                Laboratory_ID NUMBER NOT NULL,
+                Laboratory_Name VARCHAR2 NOT NULL,
+                Company VARCHAR2 NOT NULL,
+                Laboratory_Adress VARCHAR2 NOT NULL,
+                Laboratory_Description VARCHAR2 NOT NULL,
+                Laboratory_Location VARCHAR2 NOT NULL,
+                CONSTRAINT LABORATORY_PK PRIMARY KEY (Laboratory_ID)
+)
+28828 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE INSTRUMENT_INSTRUMENT_ID_SEQ
+28829 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Instrument (
+                Instrument_ID NUMBER NOT NULL,
+                Instrument_Description VARCHAR2 NOT NULL,
+                Instrument_Name VARCHAR2 NOT NULL,
+                Instrument_Cost NUMBER NOT NULL,
+                CONSTRAINT INSTRUMENT_ID PRIMARY KEY (Instrument_ID)
+)
+28829 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE SAMPLE_SAMPLE_ID_SEQ_1
+28829 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Sample (
+                Sample_ID NUMBER NOT NULL,
+                Sample_Description VARCHAR2 NOT NULL,
+                Sample_Status VARCHAR2 NOT NULL,
+                Sampling_Date DATE NOT NULL,
+                Samplepoint VARCHAR2 NOT NULL,
+                Sample_Type VARCHAR2 NOT NULL,
+                Product VARCHAR2 NOT NULL,
+                CONSTRAINT SAMPLE_ID PRIMARY KEY (Sample_ID)
+)
+28829 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Sample IS 'Logischer om hier een one to many van te maken? Of hoe combineren we dat 1 staal aan meerdere labo''s toegewezen kan worden'
+28830 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE LAB_TECHNICIANS_TECHNICIAN_372
+28830 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Lab_Technicians (
+                Technician_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Supervisor_ID NUMBER,
+                First_Name VARCHAR2 NOT NULL,
+                Last_Name VARCHAR2 NOT NULL,
+                Gender CHAR NOT NULL,
+                Function VARCHAR2 DEFAULT Lab Technician NOT NULL,
+                Function_Start_Date DATE DEFAULT now() NOT NULL,
+                Function_End_Date DATE,
+                Adress VARCHAR2 NOT NULL,
+                CONSTRAINT TECHNICIAN_ID PRIMARY KEY (Technician_ID)
+)
+28830 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE MEASUREMENT_MEASUREMENT_ID_SEQ
+28830 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Measurement (
+                Measurement_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Sample_ID NUMBER NOT NULL,
+                Instrument_ID NUMBER NOT NULL,
+                Technician_ID NUMBER NOT NULL,
+                Measurement_Start_Date DATE,
+                Measurement_End_Date DATE,
+                Result NUMBER,
+                Unit VARCHAR2,
+                Measurement_Cost NUMBER(10,2) NOT NULL,
+                CONSTRAINT MEASUREMENT_ID PRIMARY KEY (Measurement_ID)
+)
+28833 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABORATORY_LAB_TECHNICIANS_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+28834 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABORATORY_MEASUREMENT_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+28835 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT TECHNIQUE_MEASUREMENT_FK
+FOREIGN KEY (Instrument_ID)
+REFERENCES Instrument (Instrument_ID)
+NOT DEFERRABLE
+28836 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT SAMPLE_MEASUREMENT_FK
+FOREIGN KEY (Sample_ID)
+REFERENCES Sample (Sample_ID)
+ON DELETE CASCADE
+NOT DEFERRABLE
+28837 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABTECHNICIANS_LABTECHNICIA461
+FOREIGN KEY (Supervisor_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+28838 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABTECHNICIANS_MEASUREMENT_FK
+FOREIGN KEY (Technician_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+28840 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :16
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+466  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+541  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+541  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+581  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+519  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+626  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+626  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+689  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22504 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+462  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+533  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+534  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+580  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+493  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+563  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+563  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+603  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+748  [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.SwingUIProjectLoader  - Error parsing project file's olap schemas!
+org.xml.sax.SAXParseException; Premature end of file.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at ca.sqlpower.architect.olap.MondrianXMLReader.parse(MondrianXMLReader.java:103)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:212)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:185)
+	at ca.sqlpower.architect.swingui.ArchitectSwingSessionContextImpl.createSession(ArchitectSwingSessionContextImpl.java:194)
+	at ca.sqlpower.architect.swingui.ArchitectFrame$25.run(ArchitectFrame.java:1401)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+477  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+551  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+552  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+592  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+727  [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.SwingUIProjectLoader  - Error parsing project file's olap schemas!
+org.xml.sax.SAXParseException; Premature end of file.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at ca.sqlpower.architect.olap.MondrianXMLReader.parse(MondrianXMLReader.java:103)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:212)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:185)
+	at ca.sqlpower.architect.swingui.ArchitectSwingSessionContextImpl.createSession(ArchitectSwingSessionContextImpl.java:194)
+	at ca.sqlpower.architect.swingui.ArchitectFrame$25.run(ArchitectFrame.java:1401)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+478  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+549  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+550  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+590  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+724  [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.SwingUIProjectLoader  - Error parsing project file's olap schemas!
+org.xml.sax.SAXParseException; Premature end of file.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at ca.sqlpower.architect.olap.MondrianXMLReader.parse(MondrianXMLReader.java:103)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:212)
+	at ca.sqlpower.architect.swingui.SwingUIProjectLoader.load(SwingUIProjectLoader.java:185)
+	at ca.sqlpower.architect.swingui.ArchitectSwingSessionContextImpl.createSession(ArchitectSwingSessionContextImpl.java:194)
+	at ca.sqlpower.architect.swingui.ArchitectFrame$25.run(ArchitectFrame.java:1401)
+	at java.awt.event.InvocationEvent.dispatch(Unknown Source)
+	at java.awt.EventQueue.dispatchEventImpl(Unknown Source)
+	at java.awt.EventQueue.access$500(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.awt.EventQueue$3.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(Unknown Source)
+	at java.awt.EventQueue.dispatchEvent(Unknown Source)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.pumpEvents(Unknown Source)
+	at java.awt.EventDispatchThread.run(Unknown Source)
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+760  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+848  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+850  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+896  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+16523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE Laboratory (
+                Laboratory_ID NUMBER NOT NULL,
+                Laboratory_Name VARCHAR2 NOT NULL,
+                Company VARCHAR2 NOT NULL,
+                Laboratory_Adress VARCHAR2 NOT NULL,
+                Laboratory_Description VARCHAR2 NOT NULL,
+                Laboratory_Location VARCHAR2 NOT NULL,
+                CONSTRAINT LABORATORY_PK PRIMARY KEY (Laboratory_ID)
+)
+16523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE INSTRUMENT_INSTRUMENT_ID_SEQ
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Instrument (
+                Instrument_ID NUMBER NOT NULL,
+                Instrument_Description VARCHAR2 NOT NULL,
+                Instrument_Name VARCHAR2 NOT NULL,
+                Instrument_Cost NUMBER NOT NULL,
+                CONSTRAINT INSTRUMENT_ID PRIMARY KEY (Instrument_ID)
+)
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE SAMPLE_SAMPLE_ID_SEQ_1
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Sample (
+                Sample_ID NUMBER NOT NULL,
+                Sample_Description VARCHAR2 NOT NULL,
+                Sample_Status VARCHAR2 NOT NULL,
+                Sampling_Date DATE NOT NULL,
+                Samplepoint VARCHAR2 NOT NULL,
+                Sample_Type VARCHAR2 NOT NULL,
+                Product VARCHAR2 NOT NULL,
+                CONSTRAINT SAMPLE_ID PRIMARY KEY (Sample_ID)
+)
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Sample IS 'Logischer om hier een one to many van te maken? Of hoe combineren we dat 1 staal aan meerdere labo''s toegewezen kan worden'
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE LAB_TECHNICIANS_TECHNICIAN_372
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Lab_Technicians (
+                Technician_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Supervisor_ID NUMBER,
+                First_Name VARCHAR2 NOT NULL,
+                Last_Name VARCHAR2 NOT NULL,
+                Gender CHAR NOT NULL,
+                Function VARCHAR2 DEFAULT Lab Technician NOT NULL,
+                Function_Start_Date DATE DEFAULT now() NOT NULL,
+                Function_End_Date DATE,
+                Adress VARCHAR2 NOT NULL,
+                CONSTRAINT TECHNICIAN_ID PRIMARY KEY (Technician_ID)
+)
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE MEASUREMENT_MEASUREMENT_ID_SEQ
+16524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Measurement (
+                Measurement_ID NUMBER NOT NULL,
+                Laboratory_ID NUMBER NOT NULL,
+                Sample_ID NUMBER NOT NULL,
+                Instrument_ID NUMBER NOT NULL,
+                Technician_ID NUMBER NOT NULL,
+                Measurement_Start_Date DATE,
+                Measurement_End_Date DATE,
+                Result NUMBER,
+                Unit VARCHAR2,
+                Measurement_Cost NUMBER(10,2) NOT NULL,
+                CONSTRAINT MEASUREMENT_ID PRIMARY KEY (Measurement_ID)
+)
+16526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABORATORY_LAB_TECHNICIANS_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+16527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABORATORY_MEASUREMENT_FK
+FOREIGN KEY (Laboratory_ID)
+REFERENCES Laboratory (Laboratory_ID)
+NOT DEFERRABLE
+16529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT TECHNIQUE_MEASUREMENT_FK
+FOREIGN KEY (Instrument_ID)
+REFERENCES Instrument (Instrument_ID)
+NOT DEFERRABLE
+16529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT SAMPLE_MEASUREMENT_FK
+FOREIGN KEY (Sample_ID)
+REFERENCES Sample (Sample_ID)
+ON DELETE CASCADE
+NOT DEFERRABLE
+16530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Lab_Technicians ADD CONSTRAINT LABTECHNICIANS_LABTECHNICIA461
+FOREIGN KEY (Supervisor_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+16530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Measurement ADD CONSTRAINT LABTECHNICIANS_MEASUREMENT_FK
+FOREIGN KEY (Technician_ID)
+REFERENCES Lab_Technicians (Technician_ID)
+NOT DEFERRABLE
+16533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :16
+22677 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+753  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+844  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+845  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+910  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22676 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+543  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+603  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+603  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+637  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22327 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+416  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+470  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+470  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+501  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22096 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+485  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+539  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+539  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+570  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+395  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+448  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+448  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+480  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+408  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+460  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+460  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+491  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22010 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+720  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+803  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+804  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+849  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+13413 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+18729 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+22455 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+101526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+103645 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask starting on thread Objects-Adder
+103647 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask done
+105210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Meaurement_Report (TABLE)
+105210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+105210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+105210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+105210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+105213 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Measurement_Campaign (TABLE)
+498421 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@12d13951]
+498422 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask starting on thread Objects-Adder
+498424 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask done
+498426 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.PlayPen  - Unknown object dropped in PlayPen: Technician_ID: INTEGER
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+691  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+750  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+751  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+785  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22371 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+678  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+747  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+748  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+782  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22396 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+102950 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+104441 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask starting on thread Objects-Adder
+104448 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask done
+107790 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Contacts (TABLE)
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Measurement_Campaign in playpen
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107791 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107793 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.PlayPen  - Unknown object dropped in PlayPen: PlayPen Database
+107795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Meaurement_Report (TABLE)
+107795 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Measurement in playpen
+107796 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - FOUND IT!
+107798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107798 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - FOUND IT!
+107800 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107801 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - FOUND IT!
+107808 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Measurement_1 (TABLE)
+107808 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Measurement in playpen
+107809 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107809 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Measurement in playpen
+107809 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - NOT FOUND
+107813 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - adding table Measurement_Campaign (TABLE)
+107814 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Meaurement_Report in playpen
+107814 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - FOUND IT!
+107818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Looking for fk table Measurement_Campaign in playpen
+107818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - FOUND IT!
+141460 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property autoIncrementSequenceName changed while monitoring pkTable
+274460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@19b7b71e]
+276520 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+276522 [AWT-EventQueue-0] INFO  ca.sqlpower.object.undo.PropertyChangeEdit  - Found setter: setLengths
+1211156 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@19b7b71e]
+1325941 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property autoIncrementSequenceName changed while monitoring pkTable
+1333674 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property autoIncrementSequenceName changed while monitoring pkTable

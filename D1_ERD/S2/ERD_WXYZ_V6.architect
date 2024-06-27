@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.9">
+ <project-name>ERD_WXYZ_V6</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="ec7624e9-c28f-4557-ac4d-38d5f9bb52bd" name="Laboratory" objectType="TABLE" physicalName="Laboratory" >
+   <remarks>Data tabellen met Locatie en Bedrijven?</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="e85f2098-bd57-4ede-845a-10172b13eaf1" autoIncrement="true" autoIncrementSequenceName="Laboratory_Laboratory_ID_seq" defaultValue="" name="Laboratory_ID" nullable="0" physicalName="Laboratory_ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="a7f83b08-2b9d-4b3d-8344-6a5b0c067652" autoIncrement="false" autoIncrementSequenceName="Laboratory_Laboratory_Name_seq" defaultValue="" name="Laboratory_Name" nullable="0" physicalName="Laboratory_Name" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="76366f53-12ec-49f5-9817-a46ab612f2e3" autoIncrement="false" autoIncrementSequenceName="Laboratory_Laboratory_Description_seq" defaultValue="" name="Laboratory_Description" nullable="0" physicalName="Laboratory_Description" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="a2679ab8-cd74-4194-a599-4d805dfe8961" autoIncrement="false" autoIncrementSequenceName="Laboratory_Company_seq" defaultValue="" name="Company" nullable="0" physicalName="Company" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="9827bcae-c078-4986-8f20-e52036bd0c62" autoIncrement="false" autoIncrementSequenceName="Laboratory_Laboratory_Adress_seq" defaultValue="" name="Laboratory_Adress" nullable="0" physicalName="Laboratory_Adress" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL7" populated="true" UUID="68a27789-42b8-4fd8-abbf-342d1cf1ccd4" autoIncrement="false" autoIncrementSequenceName="Laboratory_Laboratory_Location_seq" defaultValue="" name="Laboratory_Location" nullable="0" physicalName="Laboratory_Location" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX8" populated="true" UUID="425c1bcc-af29-4577-985a-cbaabb6dde18" clustered="false" name="Laboratory_ID" physicalName="Lab_ID" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC9" populated="true" UUID="6c73088d-7b76-48bd-8330-7af0b7bd6a05" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="Laboratory_ID" physicalName="Laboratory_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB10" populated="true" UUID="6d793450-0066-44bf-ad52-611366fedc34" name="Measurement" objectType="TABLE" physicalName="Measurement" >
+   <remarks></remarks>
+   <folder id="FOLTAB101" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL11" populated="true" UUID="e3fa728d-4f88-498c-9dae-3f19a1b3d464" autoIncrement="true" autoIncrementSequenceName="Measurement_Measurement_ID_seq" defaultValue="" name="Measurement_ID" nullable="0" physicalName="Measurement_ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL12" populated="true" UUID="1616ea21-f76e-4444-a5b0-a0a778a67f86" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Report_ID_seq" defaultValue="" name="Report_ID" nullable="0" physicalName="Report_ID" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL13" populated="true" UUID="82e58dc5-3884-4550-ba10-17c7a8501421" autoIncrement="false" autoIncrementSequenceName="Laboratory_Laboratory_ID_seq" defaultValue="" name="Laboratory_ID" nullable="0" physicalName="Laboratory_ID" precision="0" referenceCount="1" scale="0" source-column-ref="COL2" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL14" populated="true" UUID="c53cda89-7f89-4510-b9f5-ce02aab428ec" autoIncrement="false" autoIncrementSequenceName="Measurement_Measurement_Start_Date_seq" defaultValue="" name="Measurement_Start_Date" nullable="1" physicalName="Measurement_Start_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks></remarks>
+    </column>
+    <column id="COL15" populated="true" UUID="dbd8fea5-c3fe-43b0-aa59-e0d48e5f55db" autoIncrement="false" autoIncrementSequenceName="Measurement_Measurement_End_Date_seq" defaultValue="" name="Measurement_End_Date" nullable="1" physicalName="Measurement_End_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks></remarks>
+    </column>
+    <column id="COL16" populated="true" UUID="217c22d7-46e8-46d1-945d-3338a7df3579" autoIncrement="false" autoIncrementSequenceName="Measurement_Result_seq" defaultValue="" name="Result" nullable="1" physicalName="Result" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    <column id="COL17" populated="true" UUID="b3b75384-0726-41ad-b39e-0a7981371d19" autoIncrement="false" autoIncrementSequenceName="Measurement_Unit_seq" defaultValue="" name="Unit" nullable="1" physicalName="Unit" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL18" populated="true" UUID="becd2f49-4d82-4aa2-a0b6-b4c3b54c8dcb" autoIncrement="false" autoIncrementSequenceName="Measurement_Measurement_Cost_seq" defaultValue="100,15" name="Measurement_Cost" nullable="0" physicalName="Measurement_Cost" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="8" userDefinedTypeUUID="4fc90970-b2e5-41dd-911c-cc605d87e7a8" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB103" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB102" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB104" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX19" populated="true" UUID="01ffb892-4e18-4865-9624-a564e52d950d" clustered="false" name="Measurement_ID" physicalName="Measurement_ID" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC20" populated="true" UUID="c0b61a93-5804-4e98-8534-327d7c732add" ascendingOrDescending="UNSPECIFIED" column-ref="COL11" name="Measurement_ID" physicalName="Measurement_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB21" populated="true" UUID="99320641-3678-45ae-93dd-41cc557f0a6b" name="Meaurement_Report" objectType="TABLE" physicalName="Measurement_ Report" >
+   <remarks>Rapporten met meerdere measur&apos;s?</remarks>
+   <folder id="FOLTAB211" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL22" populated="true" UUID="dec5e0df-7de8-46ef-bbbe-bcd39dd05fc4" autoIncrement="true" autoIncrementSequenceName="Measurement_ Report_Report_ID_seq" defaultValue="" name="Report_ID" nullable="0" physicalName="Report_ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL23" populated="true" UUID="19daa150-1eb2-4db8-93de-0b8f0dde7e04" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Campaign_ID_seq" defaultValue="" name="Campaign_ID" nullable="0" physicalName="Campaign_ID" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL24" populated="true" UUID="75a42cd2-d9b1-4ba9-a545-377045968636" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Report_Creation_Date_seq" defaultValue="now()" name="Report_Creation_Date" nullable="0" physicalName="Report_Creation_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL25" populated="true" UUID="a7944041-24fc-4ebd-a060-9d8bb6e1e701" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Report_Send_Date_seq" defaultValue="" name="Report_Send_Date" nullable="1" physicalName="Report_Send_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks></remarks>
+    </column>
+    <column id="COL26" populated="true" UUID="5fd9a962-5717-4acf-b6da-cd459f2ec275" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Report_Sender_Email_seq" defaultValue="" name="Report_Sender_Email" nullable="1" physicalName="Report_Sender_Email" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL27" populated="true" UUID="85f65758-23c0-4edf-994b-ce6734ed5853" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Report_Receiver_Email_seq" defaultValue="" name="Report_Receiver_Email" nullable="1" physicalName="Report_Receiver_Email" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL28" populated="true" UUID="ed8db46a-a025-481d-a96c-9ab5f41e4a09" autoIncrement="false" autoIncrementSequenceName="Measurement_ Report_Printed_Report_seq" defaultValue="" name="Printed_Report" nullable="0" physicalName="Printed_Report" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="1" userDefinedTypeUUID="67ddc63f-5541-4dd1-9236-632d9d155e80" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB213" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB212" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB214" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX29" populated="true" UUID="463683d9-351e-4d5c-9e3a-301e14b674c3" clustered="false" name="Report_ID" physicalName="Report_ID" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC30" populated="true" UUID="d2eb4654-f9ff-4876-b2a0-24383b0b3c22" ascendingOrDescending="UNSPECIFIED" column-ref="COL22" name="Report_ID" physicalName="Report_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB31" populated="true" UUID="aa4edd21-051c-4068-be97-ddd0228f8005" name="Measurement_Campaign" objectType="TABLE" physicalName="Measurement_Campaign" >
+   <remarks>Verder koppelen aan Samples? meerdere stalen in een campagne.</remarks>
+   <folder id="FOLTAB311" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL32" populated="true" UUID="f0cb45ef-096f-4c85-b1f7-fea1f5a9ac1e" autoIncrement="true" autoIncrementSequenceName="Measurement_Campaign_Campaign_ID_seq" defaultValue="" name="Campaign_ID" nullable="0" physicalName="Campaign_ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL33" populated="true" UUID="1093c306-de4a-4f2d-b7c2-8b9a801d3f44" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Creation_Date_seq" defaultValue="" name="Campaign_Creation_Date" nullable="0" physicalName="Campaign_Creation_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL34" populated="true" UUID="0d70d2d9-75ea-4984-8574-a2bc208b72ff" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Start_Date_seq" defaultValue="" name="Campaign_Start_Date" nullable="1" physicalName="Campaign_Start_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL35" populated="true" UUID="dda3f298-1707-4f42-a51b-32ab8933dfba" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_End_Date_seq" defaultValue="" name="Campaign_End_Date" nullable="1" physicalName="Campaign_End_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+     <remarks></remarks>
+    </column>
+    <column id="COL36" populated="true" UUID="21ecd44b-d186-4eab-bd69-4141b34523ab" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Description_seq" defaultValue="" name="Campaign_Description" nullable="0" physicalName="Campaign_Description" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL37" populated="true" UUID="5070774b-e09e-433c-b1cd-e019fe3c4c14" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Purpose_seq" defaultValue="" name="Campaign_Purpose" nullable="0" physicalName="Campaign_Purpose" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL38" populated="true" UUID="8192c530-2b9c-4a75-90c5-2a82056b5ae9" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Requester_seq" defaultValue="" name="Campaign_Requester" nullable="0" physicalName="Campaign_Requester" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL39" populated="true" UUID="e9fbe9fa-6d89-4a45-9b3a-0ada5da0e988" autoIncrement="false" autoIncrementSequenceName="Measurement_Campaign_Campaign_Status_seq" defaultValue="" name="Campaign_Status" nullable="0" physicalName="Campaign_Status" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB313" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB312" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB314" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX40" populated="true" UUID="c42defbc-4fbe-4035-ae2f-741574ff8e40" clustered="false" name="Measurement_Campaign_ID" physicalName="Measurement_Campaign_ID" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC41" populated="true" UUID="2844e5d7-a5bb-4a9e-ab7b-eb890a582b69" ascendingOrDescending="UNSPECIFIED" column-ref="COL32" name="Campaign_ID" physicalName="Campaign_ID" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB42" populated="true" UUID="d204262b-a96a-4186-98c8-a8239d401a5f" name="Sample_1" objectType="TABLE" physicalName="Sample_1" >
+   <remarks>Logischer om hier een one to many van te maken? Of hoe combineren we dat 1 staal aan meerdere labo&apos;s toegewezen kan worden</remarks>
+   <folder id="FOLTAB421" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL43" populated="true" UUID="3082a230-07ac-4689-9fce-f316f17878cd" autoIncrement="true" autoIncrementSequenceName="Sample_1_Sample_ID_seq" defaultValue="" name="Sample_ID" nullable="0" physicalName="Sample_ID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL44" populated="true" UUID="d6846bdd-e58d-405e-94c4-d69a816cb5ab" autoIncrement="false" autoIncrementSequenceName="Sample_1_Laboratory_ID_seq" defaultValue="" name="Laboratory_ID" nullable="0" physicalName="Laboratory_ID" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks></remarks>
+    </column>
+    <column id="COL45" populated="true" UUID="1ba12376-0546-48a6-9e7a-754789685f23" autoIncrement="false" autoIncrementSequenceName="Sample_1_Description_seq" defaultValue="" name="Description" nullable="0" physicalName="Description" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL46" populated="true" UUID="8c956357-f631-44cc-be72-eb34d1a74e09" autoIncrement="false" autoIncrementSequenceName="Sample_1_Status_seq" defaultValue="" name="Status" nullable="0" physicalName="Status" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL47" populated="true" UUID="af146275-88b4-456a-9f7a-d736dc8e11c1" autoIncrement="false" autoIncrementSequenceName="Sample_1_Sampling_Date_seq" defaultValue="" name="Sampling_Date" nullable="0" physicalName="Sampling_Date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks></remarks>
+    </column>
+    <column id="COL48" populated="true" UUID="83f8fef5-4ca1-4643-a4a7-885b2f89f9bc" autoIncrement="false" autoIncrementSequenceName="Sample_1_Samplepoint_seq" defaultValue="" name="Samplepoint" nullable="0" physicalName="Samplepoint" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL49" populated="true" UUID="400c5ff2-df6e-44f6-9d50-4df70237813e" autoIncrement="false" autoIncrementSequenceName="Sample_1_Sample_Type_seq" defaultValue="" name="Sample_Type" nullable="0" physicalName="Sample_Type" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    <column id="COL50" populated="true" UUID="5c416d29-c163-402d-b66d-64b5bf6c72df" autoIncrement="false" autoIncrementSequenceName="Sample_1_Hazards_seq" defaultValue="No Hazards" name="Hazards" nullable="1" physicalName="Hazards" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="-9" userDefinedTypeUUID="087a20b8-b387-474a-b9c8-55eb87aff017" >
+     <remarks></remarks>
+    </column>
+    <column id="COL51" populated="true" UUID="459c5a6e-2156-4925-bb93-acdf65739fcd" autoIncrement="false" autoIncrementSequenceName="Sample_1_Product_seq" defaultValue="" name="Product" nullable="0" physicalName="Product" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks></remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB423" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB422" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB424" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX52" populated="true" UUID="04ebe537-dc35-4efb-907c-c45bc3c90b0a" clustered="false" name="Sample_ID" physicalName="Sample_ID" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC53" populated="true" UUID="ed07d87f-18d8-4df3-8d0f-53c590a80d68" ascendingOrDescending="UNSPECIFIED" column-ref="COL43" name="Sample_ID" physicalName="Sample_ID" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL54" populated="true" UUID="f1b439e5-eedd-4726-9deb-eed81e7675e1" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="7" identifying="true" name="Laboratory_Measurement_fk" physicalName="Laboratory_Measurement_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP55" populated="true" UUID="2a3e59d9-f42d-4e8a-bf41-be1a39b4714b" fk-column-ref="COL13" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   </relationship>
+   <relationship id="REL56" populated="true" UUID="56ff6d60-1c70-470f-97b3-9945961165e0" deferrability="7" deleteRule="3" fk-table-ref="TAB10" fkCardinality="6" identifying="true" name="Measurement_ Report_Measurement_fk" physicalName="Measurement_ Report_Measurement_fk" pk-table-ref="TAB21" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP57" populated="true" UUID="91a413ab-ef2a-4984-8abf-15055b7a9f7a" fk-column-ref="COL12" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL22" />
+   </relationship>
+   <relationship id="REL58" populated="true" UUID="f2358a79-bfcd-4ab4-9d31-99d4b2cc3a56" deferrability="7" deleteRule="3" fk-table-ref="TAB21" fkCardinality="7" identifying="true" name="Measurement_Campaign_Measurement_ Report_fk" physicalName="Measurement_Campaign_Measurement_ Report_fk" pk-table-ref="TAB31" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP59" populated="true" UUID="1889efb8-e70f-4422-9c9d-0d4bab1fb1e9" fk-column-ref="COL23" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL32" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.Oracle8DDLGenerator" allow-connection="true" target-schema="Laboratory_samples"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.4142135623730947" viewportX="0" viewportY="233" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="70" y="341" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB10" x="456" y="297" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB21" x="483" y="635" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB31" x="488" y="879" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB42" x="1967" y="762" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL58" pkConnection="0.45495495495495497" fkConnection="0.5120772946859904" rLineColor="0x000000" pkLabelText="Campaign_ID" fkLabelText="Campaign_ID" orientation="72"/>
+  <table-link relationship-ref="REL54" pkConnection="0.4247787610619469" fkConnection="0.6524822695035462" rLineColor="0x000000" pkLabelText="Laboratory_ID" fkLabelText="Laboratory_ID" orientation="33"/>
+  <table-link relationship-ref="REL56" pkConnection="0.4975845410628019" fkConnection="0.5349794238683128" rLineColor="0x000000" pkLabelText="Report_ID" fkLabelText="Report_ID" orientation="72"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>
